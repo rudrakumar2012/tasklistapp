@@ -12,9 +12,13 @@ function App() {
 
   function addTask() {
     if (inputVal != "") {
-      setTasks((prevTask) => [...prevTask, inputVal]);
+      setTasks((prevTasks) => [...prevTasks, inputVal]);
       setInputVal("");
     }
+  }
+
+  function deleteTask(taskIndex){
+    setTasks(tasks.filter((_, index) => index !== taskIndex));
   }
 
   return (
@@ -25,7 +29,7 @@ function App() {
         writetTask={writeTask}
         addTask={addTask}
       />
-      <TodoContainer tasks={tasks}/>
+      <TodoContainer tasks={tasks} deleteTask={deleteTask}/>
     </div>
   );
 }
